@@ -20,6 +20,8 @@ RUN chmod a+x /usr/bin/wkhtmltopdf
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/bin/composer
+RUN curl -LsS http://symfony.com/installer -o /usr/bin/symfony
+RUN chmod a+x /usr/bin/symfony
 
 EXPOSE 9000
 
