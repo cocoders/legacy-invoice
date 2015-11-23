@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body%}
+    <table>
+        <thead>
+            <th><td>Numer</td></th>
+        </thead>
+        <tbody>
+        {% for invoice in invoices %}
+            <tr><td>{{ invoice.number }}</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock body %}
