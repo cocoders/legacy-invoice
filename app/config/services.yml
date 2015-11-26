@@ -1,0 +1,10 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    invoice_view.repository:
+        class: L3l0Labs\Adapters\DbalAdapter\InvoiceViewRegistry
+        arguments:
+            - @database_connection
