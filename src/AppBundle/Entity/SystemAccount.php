@@ -136,4 +136,18 @@ class SystemAccount implements UserInterface, \Serializable
             $this->passworHash,
         ) = unserialize($serialized);
     }
+    public function setUsername($email) {
+        
+    }
+    
+    public function setPassword($passwordhash) {
+        
+        
+    }
+    
+    public function setVatIdNumber($vatIdNumber) {
+        
+        
+    }
+    
 }
