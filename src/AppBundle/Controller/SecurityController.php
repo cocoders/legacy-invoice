@@ -45,7 +45,11 @@ class SecurityController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            var_dump($form->getData()); die;
+            $this->get('register_user')->execute($form->getData());
+
+            $this->addFlash('success', 'User created!');
+
+            return $this->redirectToRoute('login');
         }
 
         
