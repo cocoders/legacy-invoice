@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,20 +39,17 @@ class SecurityController extends Controller
     /**
      * @Route ("/register", name="register")
      */
-    public function registerAction() {
+    public function registerAction(Request $request) {
         
-        $user = new SystemAccount();
+        $form = $this->createForm(new RegisterType());
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            var_dump($form->getData()); die;
+        }
+
         
-        $form = $this->createFormBuilder($user)
-            ->add('username','text')
-            ->add('password', 'password')
-            ->add('vat','integer')        
-            ->add('save','submit', array('label' => 'Create User'))        
-            ->getForm();
-        
-        
-        return $this->render('invoice/register.html.twig', ['form' => $form->createView()
-                ]);
+        return $this->render('invoice/register.html.twig', ['form' => $form->createView()]);
     }
     
 //    /**

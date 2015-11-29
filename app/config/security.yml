@@ -29,7 +29,7 @@ security:
                 check_path: /login_check
                 use_forward: true
 #            logout: true
-#            anonymous: true
+            anonymous: true
             #anonymous: ~
 #        #secured_area:
             logout:
@@ -38,6 +38,7 @@ security:
 #                
     access_control:
             - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: /register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/, roles: ROLE_USER }
             # activate different ways to authenticate
 
