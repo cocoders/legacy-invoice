@@ -24,7 +24,7 @@ class InvoiceController extends Controller
     public function dashboardAction() {
         
 
-        return $this->render('invoice/dashboard.html.twig', ['dashboard' => 'active' ]  );
+        return $this->render('invoice/dashboard.html.twig');
     }
     
     /**
@@ -36,7 +36,7 @@ class InvoiceController extends Controller
             $this->getUser()->getVatIdNumber()
         );
 
-        return $this->render('invoice/listOutgoing.html.twig', ['invoices' => $invoices, 'outgoing' => 'active']);
+        return $this->render('invoice/listOutgoing.html.twig', ['invoices' => $invoices]);
     }
     /**
      * @Route("/invoices/incoming", name="incoming_invoices")
@@ -48,7 +48,7 @@ class InvoiceController extends Controller
                 
         );
         
-        return $this->render('invoice/listIncoming.html.twig', ['invoices' => $invoices, 'incoming' => 'active']);
+        return $this->render('invoice/listIncoming.html.twig', ['invoices' => $invoices]);
     }
     
      /**
@@ -56,7 +56,7 @@ class InvoiceController extends Controller
      */
     public function createInvoiceAction() {
         
-        return $this->render('invoice/createInvoice.html.twig', ['create' => 'active']);
+        return $this->render('invoice/createInvoice.html.twig');
     }
 
     /**

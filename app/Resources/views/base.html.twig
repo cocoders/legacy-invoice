@@ -46,16 +46,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="{%if dashboard is defined %} active {% endif%}">
+                    <li class="{%if app.request.attributes.get('_route') == 'dashboard' %} active {% endif%}">
                         <a href="{{ path('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li class="{%if outgoing is defined %} active {% endif%}}">
+                    <li class="{%if app.request.attributes.get('_route') == 'outgoing_invoices' %} active {% endif%}}">
                         <a href="{{ path('outgoing_invoices') }}"><i class="fa fa-list"></i> Outgoing Invoice List</a>
                     </li>   
-                    <li class="{%if incoming is defined %} active {% endif%}}">
+                    <li class="{%if app.request.attributes.get('_route') == 'incoming_invoices' %} active {% endif%}}">
                         <a href="{{ path('incoming_invoices') }}"><i class="fa fa-file-text"></i> Incoming Invoice List</a>
                     </li> 
-                    <li class="{%if create is defined %} active {% endif%}}">
+                    <li class="{%if app.request.attributes.get('_route') == 'create_invoice' %} active {% endif%}}">
                         <a href="{{ path('create_invoice') }}"><i class="fa fa-file-text"></i> Create New Invoice</a>
                     </li>
 
