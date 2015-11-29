@@ -40,6 +40,11 @@
 {#                    <h3 class="panel-title"><?php if (isset($_GET['successRegister'])): ?>You just registered successfully <?php endif ?>Please Sign In</h3>#}
                 </div>
                 <div class="panel-body">
+                    {% for flash_message in app.session.flashbag.get('success') %}
+                        <div class="alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
                     <form role="form" action="{{ path('login_check') }}" method="POST">
                         <fieldset>
                             <div class="form-group <?php if (isset($loginErrors['email'])): ?>has-error<?php endif ?>">

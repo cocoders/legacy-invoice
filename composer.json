@@ -21,7 +21,10 @@
     "behat/behat": "~3.0.14",
     "phpspec/phpspec": "~2.1.0",
     "phpunit/phpunit": "4.7.*@dev",
-    "sensio/generator-bundle": "~2.3"
+    "sensio/generator-bundle": "~2.3",
+    "behat/mink-extension": "*@dev",
+    "behat/mink-browserkit-driver": "*@dev",
+    "behat/symfony2-extension": "*@dev"
   },
   "scripts": {
     "post-install-cmd": [

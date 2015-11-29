@@ -2,30 +2,15 @@
 
 namespace AppBundle\Entity;
 
-use L3l0Labs\Accounting\Invoice\VatIdNumber;
+use L3l0Labs\SystemAccess\SystemAccount as BaseSystemAccount;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * SystemAccount
  */
-class SystemAccount implements UserInterface, \Serializable
+class SystemAccount extends BaseSystemAccount implements UserInterface, \Serializable
 {
-    /**
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @var string
-     */
-    private $passwordHash;
-
-    /**
-     * @var string
-     */
-    private $vat;
-
     /**
      * @var string
      */
@@ -40,13 +25,6 @@ class SystemAccount implements UserInterface, \Serializable
      * @var integer
      */
     private $id;
-
-    public function __construct($email, $passwordHash, VatIdNumber $vatIdNumber)
-    {
-        $this->email = $email;
-        $this->passwordHash = $passwordHash;
-        $this->vat = (string) $vatIdNumber;
-    }
 
     /**
      * Returns the roles granted to the user.
@@ -70,19 +48,6 @@ class SystemAccount implements UserInterface, \Serializable
     }
 
     /**
-     * Returns the password used to authenticate the user.
-     *
-     * This should be the encoded password. On authentication, a plain-text
-     * password will be salted, encoded, and then compared to this value.
-     *
-     * @return string The password
-     */
-    public function getPassword()
-    {
-        return $this->passwordHash;
-    }
-
-    /**
      * Returns the salt that was originally used to encode the password.
      *
      * This can return null if the password was not encoded using a salt.
@@ -101,7 +66,7 @@ class SystemAccount implements UserInterface, \Serializable
      */
     public function getUsername()
     {
-        return $this->email;
+        return $this->getEmail();
     }
 
     /**
@@ -114,17 +79,12 @@ class SystemAccount implements UserInterface, \Serializable
     {
     }
 
-    public function getVatIdNumber()
-    {
-        return new VatIdNumber($this->vat);
-    }
-
     public function serialize()
     {
         return serialize(array(
             $this->id,
-            $this->email,
-            $this->passwordHash,
+            $this->getUsername(),
+            $this->getPassword(),
         ));
     }
 
@@ -133,21 +93,20 @@ class SystemAccount implements UserInterface, \Serializable
         list (
             $this->id,
             $this->email,
-            $this->passworHash,
+            $this->passwordHash,
         ) = unserialize($serialized);
     }
-    public function setUsername($email) {
-        
+
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
+     */
+    public function getPassword()
+    {
+        return $this->getPasswordHash();
     }
-    
-    public function setPassword($passwordhash) {
-        
-        
-    }
-    
-    public function setVatIdNumber($vatIdNumber) {
-        
-        
-    }
-    
 }

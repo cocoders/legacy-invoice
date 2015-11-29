@@ -29,8 +29,7 @@ final class Command
         $buyerAddress,
         $buyerVatNumber,
         $items = []
-    )
-    {
+    ) {
 
         $this->invoiceNumber = $invoiceNumber;
         $this->sellerName = $sellerName;
