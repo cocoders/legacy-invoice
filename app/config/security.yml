@@ -17,11 +17,24 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+                
         main:
             pattern:    ^/
-            http_basic: ~
             provider: db_provider
+            
+            form_login:
+                provider: db_provider
+                login_path: /login
+                check_path: /login_check
+                use_forward: true
+            anonymous: true
+            logout:
+                path: /logout
+                target: /
+    access_control:
+            - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: /register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/, roles: ROLE_USER }
             # activate different ways to authenticate
 
             # http_basic: ~

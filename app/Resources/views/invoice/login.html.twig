@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Invoice">
+        <meta name="author" content="cocoders">
+        <title>
+        </title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <link href="{{ asset('/css/sb-admin.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('/font-awesome/css/font-awesome.min.css') }}">
+        <!-- Page Specific CSS -->
+        <link rel="stylesheet" href="{{ asset('/css/morris-0.4.3.min.css') }}">
+        <link rel="stylesheet" href=//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+        <script src="{{ asset('/js/jquery-1.10.2.js') }}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="{{  asset('/js/morris-0.4.3.min.js') }}"></script>
+        <title>{% block title %}Invoice application{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{% if app.request.get('succesRegister',false) %}You just registered successfully{% else %}Please Sign In{% endif %}</h3>
+{#                    <h3 class="panel-title"><?php if (isset($_GET['successRegister'])): ?>You just registered successfully <?php endif ?>Please Sign In</h3>#}
+                </div>
+                <div class="panel-body">
+                    <form role="form" action="{{ path('login_check') }}" method="POST">
+                        <fieldset>
+                            <div class="form-group <?php if (isset($loginErrors['email'])): ?>has-error<?php endif ?>">
+                                <?php if (isset($loginErrors['email'])): ?>
+                                    <label class="control-label" for="login-email"><?php echo $loginErrors['email'] ?></label>
+                                <?php endif ?>
+                                <input class="form-control" placeholder="E-mail" name="_username" type="email" autofocus id="username" value="{#{ last_username }#}">
+                            </div>
+                            <div class="form-group <?php if (isset($loginErrors['password'])): ?>has-error<?php endif ?>">
+                                <?php if (isset($loginErrors['password'])): ?>
+                                    <label class="control-label" for="login-email"><?php echo $loginErrors['password'] ?></label>
+                                <?php endif ?>
+                                <input class="form-control" placeholder="Password" name="_password" type="password" value="" id="password">
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Login" />
+
+                            <p>You don't have account? Please <a href="{{ path('register') }}">Register Account</a>.</p>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                        
+ {% endblock body %}

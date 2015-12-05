@@ -14,5 +14,5 @@ db:
   ports:
     - "3306:3306"
   volumes:
-    - /mnt/sda1/var/lib/invoice-data:/var/lib/mysql
-    - docker/db/my.cnf:/etc/mysql/my.cnf
+    - ./db/mysql:/var/lib/mysql
+    - ./docker/db/my.cnf:/etc/mysql/my.cnf
