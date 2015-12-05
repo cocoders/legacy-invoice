@@ -1,0 +1,120 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Invoices
+ *
+ * @ORM\Table(name="invoices", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Invoices
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="invoice_number", type="string", length=150, nullable=false)
+     */
+    private $invoiceNumber;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_of_invoice", type="datetime", nullable=false)
+     */
+    private $dateOfInvoice = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="sell_date", type="datetime", nullable=false)
+     */
+    private $sellDate = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="maturity_date", type="datetime", nullable=false)
+     */
+    private $maturityDate = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="additional_info", type="text", length=65535, nullable=true)
+     */
+    private $additionalInfo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="seller_vat_number", type="string", length=20, nullable=false)
+     */
+    private $sellerVatNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="seller_name", type="string", length=255, nullable=false)
+     */
+    private $sellerName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="seller_address", type="string", length=255, nullable=true)
+     */
+    private $sellerAddress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="buyer_vat_number", type="string", length=20, nullable=false)
+     */
+    private $buyerVatNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="buyer_name", type="string", length=255, nullable=false)
+     */
+    private $buyerName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="buyer_address", type="string", length=255, nullable=true)
+     */
+    private $buyerAddress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="total_price", type="decimal", precision=12, scale=2, nullable=true)
+     */
+    private $totalPrice;
+
+    /**
+     * @var \AppBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+
+}
+

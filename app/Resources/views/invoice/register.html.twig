@@ -1,48 +1,61 @@
-{#% extends 'base.html.twig' %#}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Invoice">
+    <meta name="author" content="cocoders">
+    <title>
+    </title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link href="{{ asset('/css/sb-admin.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/font-awesome/css/font-awesome.min.css') }}">
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="{{ asset('/css/morris-0.4.3.min.css') }}">
+    <link rel="stylesheet" href=//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <script src="{{ asset('/js/jquery-1.10.2.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{{  asset('/js/morris-0.4.3.min.js') }}"></script>
+    <title>{% block title %}Invoice application{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+
 
 {% block body %}
-{#<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Register</h3>
-                </div>
-                <div class="panel-body">
-                    <form role="form" action="{% path('registerUser') %}" method="POST">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Register</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(form) }}
                         <fieldset>
-                            <div class="form-group <?php if (isset($registerErrors['email'])): ?>has-error<?php endif ?>">
-                                <?php if (isset($registerErrors['email'])): ?>
-                                    <label class="control-label" for="register-email"><?php echo $registerErrors['email'] ?></label>
-                                <?php endif ?>
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus id="register-email">
-                            </div>
-                            <div class="form-group <?php if (isset($registerErrors['password'])): ?>has-error<?php endif ?>">
-                                <?php if (isset($registerErrors['password'])): ?>
-                                    <label class="control-label" for="register-password"><?php echo $registerErrors['password'] ?></label>
-                                <?php endif ?>
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="" id="register-password">
-                            </div>
-                            <div class="form-group <?php if (isset($registerErrors['vat'])): ?>has-error<?php endif ?>">
-                                <?php if (isset($registerErrors['vat'])): ?>
-                                    <label class="control-label" for="register-vat"><?php echo $registerErrors['vat'] ?></label>
-                                <?php endif ?>
-                                <input class="form-control" placeholder="Vat Number" name="vat" type="text" value="" id="register-vat">
-                            </div>
-                            <!-- Change this to a button or input when using this as a form -->
-                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Register" />
+                        <div class="form-group">
+                            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'E-mail' }}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.password, { 'attr': {'class': 'form-control', 'placeholder': 'Password' }}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.vatIdNumber, { 'attr': {'class': 'form-control', 'placeholder': 'Vat Number' }}) }}
+                        </div>
+                        {{ form_widget(form.save, { 'attr': { 'class': 'btn btn-lg btn-success btn-block' }}) }}
                         </fieldset>
-                    </form>
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>#}
-
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
-
-
-                    
 {% endblock %}

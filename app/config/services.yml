@@ -8,3 +8,17 @@ services:
         class: L3l0Labs\Adapters\DbalAdapter\InvoiceViewRegistry
         arguments:
             - @database_connection
+
+    system_account_registry:
+        class: AppBundle\SystemAccess\SystemAccountRegistry
+        argument:
+            - @doctrine.orm.default_entity_manager
+            
+    system_account_factory:
+        class: AppBundle\SystemAccess\SystemAccountFactory
+        
+    register_user:
+        class: L3l0Labs\SystemAccess\UseCase\Registration
+        arguments:
+            - @system_account_registry
+            - @system_account_factory

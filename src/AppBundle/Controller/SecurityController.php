@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,42 +39,21 @@ class SecurityController extends Controller
     /**
      * @Route ("/register", name="register")
      */
-    public function registerAction() {
+    public function registerAction(Request $request) {
         
-        $user = new SystemAccount();
-        
-        $form = $this->createFormBuilder($user)
-            ->add('username','text')
-            ->add('password', 'password')
-            ->add('vat','integer')        
-            ->add('save','submit', array('label' => 'Create User'))        
-            ->getForm();
-        
+        $form = $this->createForm(new RegisterType());
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $this->get('register_user')->execute($form->getData());
+            
+            $this->addFlash('success', 'User created');
+            return $this->redirectToRoute('login');
+        }
         
         return $this->render('invoice/register.html.twig', ['form' => $form->createView()
                 ]);
     }
     
-//    /**
-//     * 
-//     * @Route ("/registerUser","registerUser")
-//     */
-//    public function registerUserAction() {
-////        
-////        
-////        
-////        
-////        $user = new SystemAccount();
-////        $user = setUsername($username);
-////        $user = setPassword($password);
-////        $user = setVatIdNumber($vat);
-////        
-////        $em = $this->getDoctrine()->getManager();
-////        $em->persist($user);
-////        $em->flush();
-////        
-////        return new Response('Created new User');
-////       
-//    }
-    
+
 }
